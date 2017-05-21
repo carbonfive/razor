@@ -1,12 +1,15 @@
 defmodule Razor.Mixfile do
   use Mix.Project
 
+  @version "0.0.2"
+  
   def project do
     [app: :razor,
-     version: "0.0.1",
+     version: @version,
      elixir: "~> 1.4.2",
      escript: [main_module: Razor],
-     deps: deps()]
+     deps: deps(),
+     aliases: aliases()]
   end
 
   # Configuration for the OTP application
@@ -30,6 +33,20 @@ defmodule Razor.Mixfile do
       {:httpoison, "~> 0.11.1"},
       {:poison, "~> 3.1"},
       {:inflex, "~> 1.8"}      
+    ]
+  end
+
+  defp build_releases(_) do
+    Mix.Tasks.Compile.run([])
+    Mix.Tasks.Archive.Build.run([])
+    Mix.Tasks.Archive.Build.run(["--output=razor.ez"])
+    File.rename("razor.ez", "./razor-archives/razor.ez")
+    File.rename("razor-#{@version}.ez", "./razor-archives/razor-#{@version}.ez")
+  end
+
+  defp aliases do
+    [
+      build: [ &build_releases/1]
     ]
   end
 end
