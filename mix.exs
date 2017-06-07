@@ -3,10 +3,14 @@ defmodule Razor.Mixfile do
 
   def project do
     [app: :razor,
-     version: "0.0.1",
+     version: version(),
      elixir: "~> 1.4.2",
+     build_embedded: Mix.env == :prod,
+     start_permanent: Mix.env == :prod,     
      escript: [main_module: Razor],
-     deps: deps()]
+     deps: deps(),
+     aliases: aliases(),
+    ]
   end
 
   # Configuration for the OTP application
@@ -16,15 +20,6 @@ defmodule Razor.Mixfile do
     [applications: [:logger, :httpoison]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
     [
       {:httpoison, "~> 0.11.1"},
@@ -32,4 +27,24 @@ defmodule Razor.Mixfile do
       {:inflex, "~> 1.8"}      
     ]
   end
+
+  defp version() do
+    System.get_env("VERSION")
+      || raise "Version environment variable is required, i.e. VERSION=1.0.0 mix build"
+  end
+
+  defp aliases() do
+    [
+      build: [ &build_releases/1],
+    ]
+  end
+
+  defp build_releases(_) do
+    Mix.Tasks.Compile.run([])
+    Mix.Tasks.Archive.Build.run([])
+    Mix.Tasks.Archive.Build.run(["--output=razor.ez"])
+    File.rename("razor.ez", "./razor_archives/razor.ez")
+    File.rename("razor-#{version()}.ez", "./razor_archives/razor-#{version()}.ez")
+  end  
+  
 end
