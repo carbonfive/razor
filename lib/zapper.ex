@@ -12,11 +12,11 @@ defmodule Razor.Zapper do
 
     with :ok <- check_target(dir),
          :ok <- Presenter.print_plan(dir, name, prototype_repo),
-         {:ok, prototype} = fetch_prototype(prototype_repo),
-	 :ok = copy_prototype(dir, prototype),
-         :ok = rename_app(dir, name),
-         :ok = configure_new_app(dir),
-         :ok = Presenter.print_next_steps(dir)
+         {:ok, prototype} <- fetch_prototype(prototype_repo),
+         {:ok, _} <- copy_prototype(dir, prototype),
+         :ok <- rename_app(dir, name),
+         :ok <- configure_new_app(dir),
+         :ok <- Presenter.print_next_steps(dir)
       do
       Logger.info "Done."
       else
@@ -153,8 +153,12 @@ defmodule Razor.Zapper do
 
   defp copy_prototype(app_dir, prototype) do
     File.mkdir_p(app_dir)
-    :os.cmd('tar -zxf #{prototype} -C #{app_dir} --strip=1')
-    :ok
+
+    System.cmd("tar", ["-zxf", prototype, "-C", app_dir, "--strip=1"], stderr_to_stdout: true)
+    |> case do
+      {message, 0} -> {:ok, message}
+      {reason, 1}  -> {:error, reason}
+    end
   end
 
   
