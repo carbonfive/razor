@@ -116,7 +116,10 @@ defmodule Razor.Zapper do
     # Download the tarball and install in the cache.
     :ok = create_dir_if_missing(cached_prototypes_dir, File.exists?(cached_prototypes_dir))
     {"", 0} = System.cmd("curl", ["-s", "-L", tarball_url, "-o", prototype])
+
     Logger.info " done!"
+
+    prototype
   end
 
   def fetch_latest_tag(repo) do
