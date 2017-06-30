@@ -45,7 +45,9 @@ defmodule Razor.Zapper do
   def fetch_prototype(prototype_repo) do
     Logger.info "Checking for the latest application prototype..."
 
-    # Check if we can connect, or fail gracefully and use the latest cached version.
+    # Check if we can connect, or fail
+    # gracefully and use the latest cached version.
+
     latest_tag_obj = fetch_latest_tag(prototype_repo)
     latest_tag     = latest_tag_obj["name"]
     tarball_url    = latest_tag_obj["tarball_url"]
@@ -74,10 +76,8 @@ defmodule Razor.Zapper do
     # rename lib dir
     snake_proto_name = "app_prototype"
     snake_new_name = replacements[snake_proto_name]
-    File.rename(
-                "#{dir}/lib/#{snake_proto_name}",
-                "#{dir}/lib/#{snake_new_name}"
-              )
+    File.rename("#{dir}/lib/#{snake_proto_name}",
+                "#{dir}/lib/#{snake_new_name}")
 
       files = get_all_files(dir)
 
@@ -110,7 +110,7 @@ defmodule Razor.Zapper do
   end
 
   # Already cached
-  defp get_repo_tarball(prototype, _, _, true) do 
+  defp get_repo_tarball(prototype, _, _, true) do
     Logger.info " Using cached version."
     prototype
   end
@@ -120,7 +120,8 @@ defmodule Razor.Zapper do
     Logger.info " No cached version found, downloading..."
 
     # Download the tarball and install in the cache.
-    :ok = create_dir_if_missing(cached_prototypes_dir, File.exists?(cached_prototypes_dir))
+    :ok = create_dir_if_missing(cached_prototypes_dir,
+                                File.exists?(cached_prototypes_dir))
     {"", 0} = System.cmd("curl", ["-s", "-L", tarball_url, "-o", prototype])
 
     Logger.info " done!"
@@ -159,9 +160,10 @@ defmodule Razor.Zapper do
   defp copy_prototype(app_dir, prototype) do
     File.mkdir_p(app_dir)
 
-    call = System.cmd("tar", ["-zxf", prototype, "-C", app_dir, "--strip=1"], stderr_to_stdout: true)
+    tar_args = ["-zxf", prototype, "-C", app_dir, "--strip=1"]
+    system_call = System.cmd("tar", tar_args, stderr_to_stdout: true)
 
-    call
+    system_call
     |> case do
       {message, 0} -> {:ok, message}
       {reason, 1}  -> {:error, reason}
