@@ -19,7 +19,7 @@ defmodule Razor.CLI do
   defp format_args({[name: name], ["new"], _}), do: [name: name, dir: "./#{name}"]
   defp format_args({[], [_, _], _}), do: []
   defp format_args({[], [_| _], _}), do: []
-  defp format_args({options, [], _}), do: options
+  defp format_args({options, [], _}), do: []
 
   defp print_usage do
     IO.puts "Usage:"

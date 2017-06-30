@@ -17,6 +17,12 @@ defmodule RazorCLITest do
       assert [name: "booga", dir: "./booga"] = CLI.parse_args(args)
     end
 
+    test "with name flags without new returns empty list" do
+      args = ["--name", "booga"]
+
+      assert [] = CLI.parse_args(args)
+    end
+
     test "without a name or new, with flags returns empty list" do
       args = ["--name"]
 
