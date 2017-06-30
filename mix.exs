@@ -5,7 +5,7 @@ defmodule Razor.Mixfile do
     [app: :razor,
      version: "0.0.1",
      elixir: "~> 1.4.2",
-     escript: [main_module: Razor],
+     escript: [main_module: Razor.CLI],
      deps: deps()]
   end
 
