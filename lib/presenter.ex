@@ -1,5 +1,8 @@
 defmodule Razor.Presenter do
   require Logger
+  @moduledoc """
+  Razor.Presenter displays information about the zapped project
+  """
   
   def print_plan(target_dir, title_name, prototype_repo) do
     art = ~S"""
