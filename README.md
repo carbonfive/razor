@@ -9,6 +9,6 @@
 * `mix escript.build`
 
 ## Run
-* `./razor --name YourAppName --dir your_target_dir`
+* `./razor new YourAppName`
 * Follow usage instructions
 
