@@ -12,11 +12,11 @@ defmodule Razor.Zapper do
 
     with :ok <- check_target(dir),
          :ok <- Presenter.print_plan(dir, name, prototype_repo),
-         {:ok, prototype} = fetch_prototype(prototype_repo),
-	 :ok = copy_prototype(dir, prototype),
-         :ok = rename_app(dir, name),
-         :ok = configure_new_app(dir),
-         :ok = Presenter.print_next_steps(dir)
+         {:ok, prototype} <- fetch_prototype(prototype_repo),
+         {:ok, _} <- copy_prototype(dir, prototype),
+         :ok <- rename_app(dir, name),
+         :ok <- configure_new_app(dir),
+         :ok <- Presenter.print_next_steps(dir)
       do
       Logger.info "Done."
       else
@@ -116,7 +116,10 @@ defmodule Razor.Zapper do
     # Download the tarball and install in the cache.
     :ok = create_dir_if_missing(cached_prototypes_dir, File.exists?(cached_prototypes_dir))
     {"", 0} = System.cmd("curl", ["-s", "-L", tarball_url, "-o", prototype])
+
     Logger.info " done!"
+
+    prototype
   end
 
   def fetch_latest_tag(repo) do
@@ -150,8 +153,12 @@ defmodule Razor.Zapper do
 
   defp copy_prototype(app_dir, prototype) do
     File.mkdir_p(app_dir)
-    :os.cmd('tar -zxf #{prototype} -C #{app_dir} --strip=1')
-    :ok
+
+    System.cmd("tar", ["-zxf", prototype, "-C", app_dir, "--strip=1"], stderr_to_stdout: true)
+    |> case do
+      {message, 0} -> {:ok, message}
+      {reason, 1}  -> {:error, reason}
+    end
   end
 
   
