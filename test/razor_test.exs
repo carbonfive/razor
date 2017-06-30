@@ -11,10 +11,34 @@ defmodule RazorCLITest do
       assert [name: "booga", dir: "./booga"] = CLI.parse_args(args)
     end
 
+    test "with name and dir flags returns formatted keyword list" do
+      args = ["new", "--name", "booga", "--dir", "./my_dir"]
+
+      assert [name: "booga", dir: "./my_dir"] = CLI.parse_args(args)
+    end
+
     test "with new and name, without flags returns keyword list" do
       args = ["new", "booga"]
 
       assert [name: "booga", dir: "./booga"] = CLI.parse_args(args)
+    end
+
+    test "with new, name and dir, without flags returns keyword list" do
+      args = ["new", "booga", "./my_dir"]
+
+      assert [name: "booga", dir: "./my_dir"] = CLI.parse_args(args)
+    end
+
+    test "with non-flag name and dir flag, returns keyword list" do
+      args = ["new", "booga", "--dir", "./my_dir"]
+
+      assert [name: "booga", dir: "./my_dir"] = CLI.parse_args(args)
+    end
+
+    test "with non-flag dir and name flag, returns keyword list" do
+      args = ["new", "--name", "booga", "./my_dir"]
+
+      assert [name: "booga", dir: "./my_dir"] = CLI.parse_args(args)
     end
 
     test "with name flags without new returns empty list" do
