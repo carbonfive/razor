@@ -12,3 +12,5 @@
 * `./razor new YourAppName`
 * Follow usage instructions
 
+## Linting
+* `mix credo --strict`
