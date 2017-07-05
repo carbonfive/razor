@@ -1,19 +1,69 @@
-defmodule ZapperTest do
+defmodule RazorCLITest do
   use ExUnit.Case
-  doctest Razor.Zapper
+  doctest Razor.CLI
 
-  alias Razor.Zapper
+  alias Razor.CLI
 
-  test "check_target passes for empty dirs" do
-    test_path = "/tmp/razor-test"
-    File.rmdir! test_path
-    File.mkdir! test_path
-    result = Zapper.check_target(test_path)
-    assert result === :ok
+  describe "parse_args" do
+    test "with name flags returns formatted keyword list" do
+      args = ["new", "--name", "booga"]
+
+      assert [name: "booga", dir: "./booga"] = CLI.parse_args(args)
+    end
+
+    test "with name and dir flags returns formatted keyword list" do
+      args = ["new", "--name", "booga", "--dir", "./my_dir"]
+
+      assert [name: "booga", dir: "./my_dir"] = CLI.parse_args(args)
+    end
+
+    test "with new and name, without flags returns keyword list" do
+      args = ["new", "booga"]
+
+      assert [name: "booga", dir: "./booga"] = CLI.parse_args(args)
+    end
+
+    test "with new, name and dir, without flags returns keyword list" do
+      args = ["new", "booga", "./my_dir"]
+
+      assert [name: "booga", dir: "./my_dir"] = CLI.parse_args(args)
+    end
+
+    test "with non-flag name and dir flag, returns keyword list" do
+      args = ["new", "booga", "--dir", "./my_dir"]
+
+      assert [name: "booga", dir: "./my_dir"] = CLI.parse_args(args)
+    end
+
+    test "with non-flag dir and name flag, returns keyword list" do
+      args = ["new", "--name", "booga", "./my_dir"]
+
+      assert [name: "booga", dir: "./my_dir"] = CLI.parse_args(args)
+    end
+
+    test "with name flags without new returns empty list" do
+      args = ["--name", "booga"]
+
+      assert [] = CLI.parse_args(args)
+    end
+
+    test "without a name or new, with flags returns empty list" do
+      args = ["--name"]
+
+      assert [] = CLI.parse_args(args)
+    end
+
+    test "with too many args, without flags returns empty list" do
+      args = ["booga", "something", "wtf"]
+
+      assert [] = CLI.parse_args(args)
+    end
+
+    test "with a name, without flags, in wrong direction returns empty list" do
+      args = ["booga", "new"]
+
+      assert [] = CLI.parse_args(args)
+    end
   end
-  test "check_target fails for full dirs" do
-    Zapper.check_target("./")
-    {:error, _result} = Zapper.check_target("./")
-  end
-  
 end
+
