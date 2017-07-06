@@ -20,10 +20,10 @@ defmodule Razor.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.11.1"},
+      {:httpoison, "~> 0.12"},
       {:poison, "~> 3.1"},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
-      {:inflex, "~> 1.8"}      
+      {:inflex, "~> 1.8"}    
     ]
   end
 
