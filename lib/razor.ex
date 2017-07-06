@@ -3,6 +3,8 @@ defmodule Razor.CLI do
     Razor.CLI is responsible for parsing allowed CLI arguments
     and triggering the appropriate Zapper behavior
   """
+  alias Razor.Zapper
+
   def main(args) do
     args |> parse_args |> process
   end
@@ -11,11 +13,14 @@ defmodule Razor.CLI do
     print_usage()
   end
   def process(options) do
-    Razor.Zapper.zap(options[:name], options[:dir])
+    Zapper.zap(options[:name], options[:dir])
   end
 
   def parse_args(args) do
-    OptionParser.parse(args, switches: [dir: :string, name: :string])
+    switches = [dir: :string, name: :string]
+    parsed_args = OptionParser.parse(args, switches: switches)
+
+    parsed_args
     |> format_args
   end
 

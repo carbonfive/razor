@@ -1,6 +1,9 @@
 defmodule Razor.Presenter do
   require Logger
-  
+  @moduledoc """
+  Razor.Presenter displays information about the zapped project
+  """
+
   def print_plan(target_dir, title_name, prototype_repo) do
     art = ~S"""
 
@@ -19,7 +22,7 @@ defmodule Razor.Presenter do
     Logger.info "- Elixir Version:    Not yet determined."
     :ok
   end
-  
+
   def print_next_steps(dir) do
     IO.puts """
     Zap! Your application is ready. Next steps...
@@ -54,7 +57,7 @@ defmodule Razor.Presenter do
     Enjoy your Carbon Five flavored Phoenix application!
     """
   end
-    
+
   def print_next_steps(_, _) do
     IO.puts """
     Zap! Your application is ready.
@@ -70,11 +73,11 @@ defmodule Razor.Presenter do
   def convert_string_to_dashed(string) do
     Inflex.parameterize(string)
   end
-  
+
   def convert_string_to_snake(string) do
     Inflex.underscore(string)
   end
-  
+
   def convert_string_to_title(string) do
     string
     |> convert_string_to_snake()
@@ -84,4 +87,3 @@ defmodule Razor.Presenter do
     |> Enum.join(" ")
   end
 end
-
