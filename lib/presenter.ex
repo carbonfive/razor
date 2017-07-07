@@ -42,14 +42,15 @@ defmodule Razor.Presenter do
     $ brunch build
 
     # Create your .env with a secret key base
-    # i.e. for bash/zsh:
-    $ echo -n 'SECRET_KEY_BASE=' > .env
-    $ mix phoenix.gen.secret >> .env
+    # for bash:
+    $ echo -n 'export SECRET_KEY_BASE=' > .env; mix phoenix.gen.secret >> .env
+    # for zsh/fish:
+    $ echo -n 'SECRET_KEY_BASE=' > .env; mix phoenix.gen.secret >> .env
 
     # Run the initial tests (they should all pass)
     $ mix test
 
-    # Load your secret key base from .env & run your server
+    # Run with heroku local/foreman, or load your secret key base from .env & run phoenix
     $ source .env
     $ mix phoenix.server
     $ open http://localhost:4000
