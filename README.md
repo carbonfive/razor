@@ -1,5 +1,25 @@
 ![alt tag](https://github.com/craiglyons/razor/blob/master/static/logo_tmp.jpg)
 
+Phoenix application generator that builds a new project skeleton configured with Carbon Five preferences and best practices baked right in. Spend less time configuring and more building cool features.
+
+Razor generates Phoenix projects by cloning a prototype app and massaging it gently into shape.
+
+What's in the box? 
+- Phoenix
+- Postgrex
+- Slim
+- Wallaby
+- ExMachina
+- Yarn
+- Sass
+- Bootstrap
+- additional acceptance environment
+- CI testing via CircleCI
+- .iex.exs for REPL aliases & imports
+- ready for deployment to Heroku Pipelines in acceptance and prod environments.
+
+Inspired by [Carbon Five Raygun](https://github.com/carbonfive/raygun)
+
 ## Installing & running
 * `mix escript.install https://github.com/carbonfive/razor/raw/master/razor_archives/razor`
 * Add the escript dir to your path or create a symlink, i.e. `ln -s /path/to/razor /usr/local/bin/`
@@ -13,6 +33,12 @@ _Windows users - your executable may be `razor.bat` instead of `razor`_
 
 ## Linting
 * `mix credo --strict`
+
+## Internal Mechanics
+
+Razor fetches the greatest tag from the carbonfive/razor-phoenix repo, unless it already has it cached in ~/.razor, extracts the contents of the tarball, and runs a series of search-and-replaces on the code to customize it accordingly.
+
+This approach is fast, simple, and makes razor developement very easy. Make changes to the application prototype (which is a valid phoenix app) and tag them when they should be used for new applications.
 
 ***
 
