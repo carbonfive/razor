@@ -8,7 +8,7 @@ defmodule Mix.Tasks.BuildReleases do
     Mix.Tasks.Compile.run([])
     Mix.Tasks.Escript.Build.run([])
     File.rename("#{build_path()}/razor.ez", "#{build_path()}/razor")
-    File.cp("#{build_path()}/razor.ez", "#{build_path()}/razor-#{version()}")
+    File.cp("#{build_path()}/razor", "#{build_path()}/razor-#{version()}")
     success_message()
   end
 

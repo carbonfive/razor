@@ -1,7 +1,7 @@
 defmodule Razor.Zapper do
   require Logger
   alias Razor.Presenter
-  @default_repo "craiglyons/razor-phoenix"
+  @default_repo "carbonfive/razor-phoenix"
   @moduledoc """
   Razor.Zapper downloads the prototype project and
   copies it to the destination directory. Much awesome.
