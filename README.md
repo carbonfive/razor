@@ -37,6 +37,10 @@ If you want to install to a directory named differently from the app,
 
 _Windows users - your executable may be `razor.bat` instead of `razor`_
 
+## Next steps: deploying your new app, running locally, & c.
+
+_See the prototype repository: [carbonfive/razor-phoenix](https://github.com/carbonfive/razor-phoenix) for more info_
+
 ## Linting
 * `mix credo --strict`
 
