@@ -35,10 +35,10 @@ defmodule Razor.Presenter do
     # Set up your database, named after the application
     $ mix ecto.setup
 
-    # Install your javascript dependencies
+    # Install your javascript dependencies, you'll need yarn installed and in your path
     $ yarn install
 
-    # Build your javascript dependencies
+    # Build your javascript dependencies, you'll need brunch installed and in your path
     $ brunch build
 
     # Create your .env with a secret key base
