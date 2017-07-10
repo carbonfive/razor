@@ -4,7 +4,7 @@ Phoenix application generator that builds a new project skeleton configured with
 
 Razor generates Phoenix projects by cloning a prototype app and massaging it gently into shape.
 
-What's in the box? 
+What's in the box?
 - Phoenix
 - Postgrex
 - Slim
