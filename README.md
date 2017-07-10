@@ -46,5 +46,5 @@ This approach is fast, simple, and makes razor developement very easy. Make chan
 * Clone/fork Razor, make changes
 * Add tests
 * Bump the project version # in `mix.exs`
-* `mix build_releases`
+* `mix compile; mix build_releases`
 * Submit a PR
