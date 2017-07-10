@@ -22,7 +22,7 @@ Inspired by [Carbon Five Raygun](https://github.com/carbonfive/raygun)
 
 ## Before You Start
 You'll need the following dependencies:
-* [Elixir](https://elixir-lang.org/install.html)
+* [Elixir 1.4.5](https://elixir-lang.org/install.html)
 * [Yarn](https://github.com/yarnpkg/yarn) for JavaScript dependencies, installed and available on your path.
 * [Brunch](https://github.com/brunch/brunch) for JavaScript builds, installed and available on your path.
 
