@@ -1,7 +1,7 @@
 defmodule Razor.Presenter do
   require Logger
   @moduledoc """
-  Razor.Presenter displays information about the zapped project
+  Razor.Presenter displays information about the generated project
   """
 
   def print_plan(target_dir, title_name, prototype_repo) do
@@ -25,7 +25,7 @@ defmodule Razor.Presenter do
 
   def print_next_steps(dir) do
     IO.puts """
-    Zap! Your application is ready. Next steps...
+    Your new application has been cut! Next steps...
 
     $ cd #{dir}
 
@@ -41,11 +41,10 @@ defmodule Razor.Presenter do
     # Build your javascript dependencies, you'll need brunch installed and in your path
     $ brunch build
 
-    # Create your .env with a secret key base
-    # for bash:
+    # Create your .env with a secret key base, i.e. for bash:
     $ echo -n 'export SECRET_KEY_BASE=' > .env; mix phoenix.gen.secret >> .env
-    # for zsh/fish:
-    $ echo -n 'SECRET_KEY_BASE=' > .env; mix phoenix.gen.secret >> .env
+    # Set dev mode locally
+    $ echo -n 'export MIX_ENV=dev' >> .env
 
     # Run the initial tests (they should all pass)
     $ mix test
@@ -61,9 +60,9 @@ defmodule Razor.Presenter do
 
   def print_next_steps(_, _) do
     IO.puts """
-    Zap! Your application is ready.
+    Your new application has been cut by Razor!
 
-    Enjoy your razor-generated application!
+    Enjoy your Carbon Five-flavored application.
     """
   end
 
