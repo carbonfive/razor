@@ -4,7 +4,7 @@ Phoenix application generator that builds a new project skeleton configured with
 
 Razor generates Phoenix projects by cloning a prototype app and massaging it gently into shape.
 
-What's in the box? 
+What's in the box?
 - Phoenix
 - Postgrex
 - Slim
@@ -36,6 +36,10 @@ If you want to install to a directory named differently from the app,
 * `razor --name YourAppName --dir your_target_dir`
 
 _Windows users - your executable may be `razor.bat` instead of `razor`_
+
+## Next steps: deploying your new app, running locally, & c.
+
+_See the prototype repository: [carbonfive/razor-phoenix](https://github.com/carbonfive/razor-phoenix) for more info_
 
 ## Linting
 * `mix credo --strict`
