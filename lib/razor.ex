@@ -1,9 +1,9 @@
 defmodule Razor.CLI do
   @moduledoc """
     Razor.CLI is responsible for parsing allowed CLI arguments
-    and triggering the appropriate Zapper behavior
+    and triggering the appropriate generator behavior
   """
-  alias Razor.Zapper
+  alias Razor.Generator
 
   def main(args) do
     args |> parse_args |> process
@@ -13,7 +13,7 @@ defmodule Razor.CLI do
     print_usage()
   end
   def process(options) do
-    Zapper.zap(options[:name], options[:dir])
+    Generator.generate(options[:name], options[:dir])
   end
 
   def parse_args(args) do

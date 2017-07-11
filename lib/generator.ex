@@ -1,18 +1,18 @@
-defmodule Razor.Zapper do
+defmodule Razor.Generator do
   require Logger
   alias Razor.Presenter
   @default_repo "carbonfive/razor-phoenix"
   @moduledoc """
-  Razor.Zapper downloads the prototype project and
+  Razor.Generator downloads the prototype project and
   copies it to the destination directory. Much awesome.
   """
 
-  def zap(name) do
-    zap(name, "./")
+  def generate(name) do
+    generate(name, "./")
   end
 
-  def zap(name, dir, prototype_repo \\ @default_repo) do
-    Logger.info "Zapping #{name}..."
+  def generate(name, dir, prototype_repo \\ @default_repo) do
+    Logger.info "Cutting #{name}..."
 
     with :ok <- check_target(dir),
       :ok <- Presenter.print_plan(dir, name, prototype_repo),
@@ -179,7 +179,7 @@ defmodule Razor.Zapper do
     File.cd!(dir)
     {_, 0} = System.cmd("git", ["init"])
     {_, 0} = System.cmd("git", ["add", "-A", "."])
-    {_, 0} = System.cmd("git", ["commit", "-m", "Razor-zapped skeleton."])
+    {_, 0} = System.cmd("git", ["commit", "-m", "App skeleton cut with Razor."])
     :ok
   end
 end
