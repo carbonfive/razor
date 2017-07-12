@@ -25,7 +25,7 @@ defmodule Razor.Presenter do
 
   def print_next_steps(dir) do
     IO.puts """
-    Your new application has been cut! Next steps...
+    // Your new application has been cut! Next steps... //
 
     $ cd #{dir}
 
@@ -60,7 +60,7 @@ defmodule Razor.Presenter do
 
   def print_next_steps(_, _) do
     IO.puts """
-    Your new application has been cut by Razor!
+    // Your new application has been cut by Razor! //
 
     Enjoy your Carbon Five-flavored application.
     """

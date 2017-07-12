@@ -21,36 +21,66 @@ What's in the box?
 Inspired by [Carbon Five Raygun](https://github.com/carbonfive/raygun)
 
 ## Before You Start
-You'll need the following dependencies:
+You'll need these dependencies for Razor & your new Phoenix app:
+* Erlang 18 or 19 (20 will be supported when Razor's dependencies do)
 * [Elixir 1.4.5](https://elixir-lang.org/install.html)
+* Postgres
 * [Yarn](https://github.com/yarnpkg/yarn) for JavaScript dependencies, installed and available on your path.
 * [Brunch](https://github.com/brunch/brunch) for JavaScript builds, installed and available on your path.
+
+_Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the generated app have a `.tool-versions` file to help you get the right versions of things. You can change these - for example, erlang 19.3 is probably fine, but currently has installation problems on Macs._
 
 ## Installing & running
 * `mix escript.install https://github.com/carbonfive/razor/raw/master/razor_archives/razor`
 * Add the escript dir to your path or create a symlink, i.e. `ln -s /path/to/razor /usr/local/bin/`
-* Run with `razor new YourAppName`
-* Follow instructions to finish installation
-
-If you want to install to a directory named differently from the app,
+* Cut your app with `razor new YourAppName`
+* Or, if you want to install to a directory named differently from the app,
 * `razor --name YourAppName --dir your_target_dir`
 
+
+## Build your new project
+* `cd your_new_project_dir`
+* `mix deps.get` - install dependencies
+* `mix ecto.setup` - setup your local database
+* Prep js - `yarn install; brunch build`
+* Create your .env with a secret key base, i.e. for bash: `echo -n 'export SECRET_KEY_BASE=' > .env; mix phoenix.gen.secret >> .env`
+* Set dev mode locally with `echo -n 'export MIX_ENV=dev' >> .env`
+* Verify the test suite passes with `mix test`
+* Run with heroku local/foreman, or load your secret key base from .env & run phoenix
+* `source .env; mix phoenix.server`
+* That's it! Visit your fully-featured app at `localhost:4000`.
+
 _Windows users - your executable may be `razor.bat` instead of `razor`_
+
+## Deployment
+  This app is pre-configured for easy deployment to Heroku w/ pipelines using CircleCI.  CI is only used to run tests; your pipelines should be configured to auto-deploy branches after passing CI tests.
+
+  Convention is to auto-deploy `master` branch to `acceptance`, and `production` branch to `production`.
+
+  * Create Heroku apps for `acceptance` and `production`
+  * Provision Heroku Postgres DB resources
+  * Add buildpacks to Heroku apps
+    * `heroku buildpacks:add https://github.com/HashNuke/heroku-buildpack-elixir.git --app your-heroku-app-name`
+    * `heroku buildpacks:add https://github.com/gjaldon/heroku-buildpack-phoenix-static.git --app your-heroku-app-name`
+  * Add environment variables to Heroku
+    * `SECRET_KEY_BASE`, which can be generated with the task `mix phoenix.gen.secret`
+    * `MIX_ENV` should be `acceptance` and `prod` respectively
+    * `POOL_SIZE` should be set 2 units below the max db connections allowed by the Heroku instance. This allows mix tasks to be run with 2 connections.
+    * `DATABASE_URL` should have been filled automatically by provisioning heroku postgres.
 
 ## Linting
 * `mix credo --strict`
 
 ## Internal Mechanics
 
-Razor fetches the greatest tag from the carbonfive/razor-phoenix repo, unless it already has it cached in ~/.razor, extracts the contents of the tarball, and runs a series of search-and-replaces on the code to customize it accordingly.
+Razor fetches the latest tag from the carbonfive/razor-phoenix repo, unless it already has it cached in ~/.razor, extracts the contents of the tarball, and runs a series of search-and-replaces on the code to customize it accordingly.
 
 This approach is fast, simple, and makes razor developement very easy. Make changes to the application prototype (which is a valid phoenix app) and tag them when they should be used for new applications.
 
 ***
 
-## Contributing
-* Clone/fork Razor, make changes
-* Add tests
+## Contributing to Razor
+* Clone/fork Razor, make your changes & add tests
 * Bump the project version # in `mix.exs`
 * `mix compile; mix build_releases`
 * Submit a PR
