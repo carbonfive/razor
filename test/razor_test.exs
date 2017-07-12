@@ -64,6 +64,23 @@ defmodule RazorCLITest do
 
       assert [] = CLI.parse_args(args)
     end
+
+    test "with a version, flag the version" do
+      args = ["--version"]
+
+      assert [version: true] = CLI.parse_args(args)
+    end
+
+    test "with a version and new, flag the version" do
+      args = ["--version", "new"]
+
+      assert [version: true] = CLI.parse_args(args)
+    end
+
+    test "with a v alias, flag the version" do
+      args = ["-v"]
+
+      assert [version: true] = CLI.parse_args(args)
+    end
   end
 end
-
