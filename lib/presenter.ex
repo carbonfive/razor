@@ -35,16 +35,16 @@ defmodule Razor.Presenter do
     # Set up your database, named after the application
     $ mix ecto.setup
 
-    # Install your javascript dependencies, you'll need yarn installed and in your path
+    # Install your javascript dependencies (you'll need yarn installed and in your path)
     $ yarn install
 
-    # Build your javascript dependencies, you'll need brunch installed and in your path
+    # Build your javascript dependencies (you'll need brunch installed and in your path)
+    # For a local copy, install brunch from here and add node_modules/.bin to your path
     $ brunch build
 
-    # Create your .env with a secret key base, i.e. for bash:
-    $ echo -n 'export SECRET_KEY_BASE=' > .env; mix phoenix.gen.secret >> .env
-    # Set dev mode locally
-    $ echo -n 'export MIX_ENV=dev' >> .env
+    # Create a .env file with variables MIX_ENV=dev and SECRET_KEY_BASE=your_secret_key_base
+    # To generate a good SECRET_KEY_BASE, you can use the phoenix generator:
+    $ mix phoenix.gen.secret
 
     # Run the initial tests (they should all pass)
     $ mix test

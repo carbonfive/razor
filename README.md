@@ -26,7 +26,9 @@ You'll need these dependencies for Razor & your new Phoenix app:
 * [Elixir 1.4.5](https://elixir-lang.org/install.html)
 * Postgres
 * [Yarn](https://github.com/yarnpkg/yarn) for JavaScript dependencies, installed and available on your path.
-* [Brunch](https://github.com/brunch/brunch) for JavaScript builds, installed and available on your path.
+* [Brunch](https://github.com/brunch/brunch) for JavaScript builds, installed and available on your path.  
+You can install brunch globally or local to your project with yarn or npm.  
+If you install it local to your project, you'll need to add `node_modules/.bin` to your path so the executable can be found.
 
 _Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the generated app have a `.tool-versions` file to help you get the right versions of things. You can change these - for example, erlang 19.3 is probably fine, but currently has installation problems on Macs._
 
@@ -42,8 +44,10 @@ _Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the gener
 * `cd your_new_project_dir`
 * `mix deps.get` - install dependencies
 * `mix ecto.setup` - setup your local database
-* Prep js - `yarn install; brunch build`
-* Create your .env with a secret key base, i.e. for bash: `echo -n 'export SECRET_KEY_BASE=' > .env; mix phoenix.gen.secret >> .env`
+* Prep js - `yarn install; brunch build`  
+If you have issues with this, see the "Before You Start" section above.
+* Create a `.env` file with variables MIX_ENV=dev and SECRET_KEY_BASE=your_secret_key_base.  
+Run `mix phoenix.gen.secret` to generate a good value for `SECRET_KEY_BASE`.
 * Set dev mode locally with `echo -n 'export MIX_ENV=dev' >> .env`
 * Verify the test suite passes with `mix test`
 * Run with heroku local/foreman, or load your secret key base from .env & run phoenix
