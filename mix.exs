@@ -15,15 +15,15 @@ defmodule Razor.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :httpoison]]
+    [applications: [:logger, :poison, :httpoison, :inflex]]
   end
 
   defp deps do
     [
       {:httpoison, "~> 0.12"},
       {:poison, "~> 3.1"},
+      {:inflex, "~> 1.8"},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
-      {:inflex, "~> 1.8"}    
     ]
   end
 
