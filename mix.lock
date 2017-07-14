@@ -1,4 +1,5 @@
-%{"bunt": {:hex, :bunt, "0.2.0", "951c6e801e8b1d2cbe58ebbd3e616a869061ddadcc4863d0a2182541acae9a38", [:mix], []},
+%{"arguments": {:hex, :arguments, "0.1.0", "b1ea58e190165df5a23b604595a612a589491ab14e0a9ed61155c76ce576db04", [:mix], []},
+  "bunt": {:hex, :bunt, "0.2.0", "951c6e801e8b1d2cbe58ebbd3e616a869061ddadcc4863d0a2182541acae9a38", [:mix], []},
   "certifi": {:hex, :certifi, "1.2.1", "c3904f192bd5284e5b13f20db3ceac9626e14eeacfbb492e19583cf0e37b22be", [:rebar3], []},
   "credo": {:hex, :credo, "0.8.1", "137efcc99b4bc507c958ba9b5dff70149e971250813cbe7d4537ec7e36997402", [:mix], [{:bunt, "~> 0.2.0", [hex: :bunt, optional: false]}]},
   "hackney": {:hex, :hackney, "1.8.6", "21a725db3569b3fb11a6af17d5c5f654052ce9624219f1317e8639183de4a423", [:rebar3], [{:certifi, "1.2.1", [hex: :certifi, optional: false]}, {:idna, "5.0.2", [hex: :idna, optional: false]}, {:metrics, "1.0.1", [hex: :metrics, optional: false]}, {:mimerl, "1.0.2", [hex: :mimerl, optional: false]}, {:ssl_verify_fun, "1.1.1", [hex: :ssl_verify_fun, optional: false]}]},

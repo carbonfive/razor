@@ -3,7 +3,7 @@ defmodule Razor.Mixfile do
 
   @build_path "razor_archives"
 
-  @version "0.0.1"
+  @version "0.1.0"
 
   def project do
     [app: :razor,
@@ -25,6 +25,7 @@ defmodule Razor.Mixfile do
       {:httpoison, "~> 0.12"},
       {:poison, "~> 3.1"},
       {:inflex, "~> 1.8"},
+      {:arguments, "~> 0.1"},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
     ]
   end
