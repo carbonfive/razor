@@ -4,7 +4,7 @@ Phoenix application generator that builds a new project skeleton configured with
 
 Razor generates Phoenix projects by cloning a prototype app and massaging it gently into shape.
 
-What's in the box? 
+What's in the box?
 - Phoenix
 - Postgrex
 - Slim
@@ -37,7 +37,7 @@ _Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the gener
 * Add the escript dir to your path or create a symlink, i.e. `ln -s /path/to/razor /usr/local/bin/`
 * Cut your app with `razor new YourAppName`
 * Or, if you want to install to a directory named differently from the app,
-* `razor --name YourAppName --dir your_target_dir`
+* `razor new YourAppName your_target_dir`
 
 
 ## Build your new project
