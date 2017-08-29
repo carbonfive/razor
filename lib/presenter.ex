@@ -42,18 +42,18 @@ defmodule Razor.Presenter do
     # For a local copy, install brunch from here and add node_modules/.bin to your path
     $ brunch build
 
-    # Create a .env file with variables MIX_ENV=dev and SECRET_KEY_BASE=your_secret_key_base
-    # To generate a good SECRET_KEY_BASE, you can use the phoenix generator:
-    $ mix phoenix.gen.secret
-
     # Run the initial tests (they should all pass)
     $ mix test
 
-    # Run with heroku local/foreman, or load your secret key base from .env & run phoenix
-    $ source .env
-    $ mix phoenix.server
-    $ open http://localhost:4000
+    # Generate a secret key base, which you'll use to run your server
+    $ mix phoenix.gen.secret
+    
+    # Run your server (use the key you generated as the value for SECRET_KEY_BASE)
+    $ MIX_ENV=dev SECRET_KEY_BASE= mix phoenix.server
 
+    $ open http://127.0.0.1:4000
+
+    For more detailed instructions, visit https://github.com/carbonfive/razor.
     Enjoy your Carbon Five flavored Phoenix application!
     """
   end
