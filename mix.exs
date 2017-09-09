@@ -3,12 +3,12 @@ defmodule Razor.Mixfile do
 
   @build_path "razor_archives"
 
-  @version "0.1.0"
+  @version "0.2.0"
 
   def project do
     [app: :razor,
      version: @version,
-     elixir: "~> 1.4.5",
+     elixir: "~> 1.5.1",
      build_embedded: true,
      start_permanent: true,
      escript: escript(),

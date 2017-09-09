@@ -15,6 +15,7 @@ defmodule Mix.Tasks.BuildReleases do
   defp version(), do: @version
 
   defp success_message() do
+    IO.puts "Renamed razor_archives/razor.ez to razor_archives/razor"
     IO.puts "Generated escript razor_archives/razor-#{version()} with MIX_ENV=#{Mix.env}"
   end
   
