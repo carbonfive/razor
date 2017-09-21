@@ -88,7 +88,7 @@ Convention is to auto-deploy `master` branch to `acceptance`, and `production` b
   - `heroku buildpacks:add https://github.com/gjaldon/heroku-buildpack-phoenix-static.git --app your-heroku-app-name`
 - Add environment variables to Heroku
   - `SECRET_KEY_BASE`, which can be generated with the task `mix phoenix.gen.secret`
-  - `MIX_ENV` should be `acceptance` and `prod` respectively
+  - `MIX_ENV` should be `acceptance` and `production` respectively
   - `POOL_SIZE` should be set 2 units below the max db connections allowed by the Heroku instance. This allows mix tasks to be run with 2 connections.
   - `DATABASE_URL` should have been filled automatically by provisioning heroku postgres.
 
