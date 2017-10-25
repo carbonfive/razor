@@ -7,12 +7,12 @@ defmodule Razor.Presenter do
   def print_plan(target_dir, title_name, prototype_repo) do
     art = ~S"""
 
-    __________                            
-    \______   \_____  ___________________ 
+    __________
+    \______   \_____  ___________________
      |       _/\__  \ \___   /  _ \_  __ \
      |    |   \ / __ \_/    (  <_> )  | \/
-     |____|_  /(____  /_____ \____/|__|   
-            \/      \/      \/            
+     |____|_  /(____  /_____ \____/|__|
+            \/      \/      \/
     """
 
     Logger.info art
@@ -47,7 +47,7 @@ defmodule Razor.Presenter do
 
     # Generate a secret key base, which you'll use to run your server
     $ mix phoenix.gen.secret
-    
+
     # Run your server (use the key you generated as the value for SECRET_KEY_BASE)
     $ MIX_ENV=dev SECRET_KEY_BASE= mix phoenix.server
 
@@ -67,15 +67,18 @@ defmodule Razor.Presenter do
   end
 
   def convert_string_to_camel(string) do
-    Inflex.camelize(string)
+    string
+    |> Inflex.camelize
   end
 
   def convert_string_to_dashed(string) do
-    Inflex.parameterize(string)
+    string
+    |> Inflex.parameterize
   end
 
   def convert_string_to_snake(string) do
-    Inflex.underscore(string)
+    string
+    |> Inflex.underscore
   end
 
   def convert_string_to_title(string) do
@@ -86,4 +89,5 @@ defmodule Razor.Presenter do
     |> Enum.map(&(String.capitalize(&1)))
     |> Enum.join(" ")
   end
+
 end
