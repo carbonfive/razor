@@ -18,6 +18,11 @@ defmodule Razor.Arguments do
     alias: :d
   ]
 
+  flag "repo", do: [
+    type: :string,
+    alias: :r
+  ]
+
   flag "version", do: [
     type: :boolean,
     alias: :v

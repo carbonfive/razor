@@ -12,9 +12,13 @@ defmodule Razor.CLI do
   end
 
   def process(%{version: true}), do: print_version()
+  def process(%{new: true, name: name, dir: dir, repo: repo}) do
+    Generator.generate(name, dir, repo)
+  end
   def process(%{new: true, name: name, dir: dir}) do
     Generator.generate(name, dir)
   end
+
   def process(_) do
     print_usage()
   end
@@ -23,7 +27,7 @@ defmodule Razor.CLI do
     IO.puts "Razor #{@version}"
     IO.puts "Usage:"
     IO.puts "razor new MyApp"
-    IO.puts "razor new MyApp2 ~/specific_dir"
+    IO.puts "razor new MyApp2 ~/specific_dir [-r carbonfive/razor-phoenix]"
     IO.puts "razor [-v, --version]"
   end
 

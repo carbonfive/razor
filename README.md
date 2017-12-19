@@ -26,7 +26,7 @@ Inspired by [Carbon Five Raygun](https://github.com/carbonfive/raygun)
 You'll need these dependencies for Razor & your new Phoenix app:
 
 - Erlang
-- [Elixir 1.4.5](https://elixir-lang.org/install.html)
+- [Elixir 1.5.1](https://elixir-lang.org/install.html)
 - Postgres
 - [Yarn](https://github.com/yarnpkg/yarn) for JavaScript dependencies, installed and available on your path.
 - [Phantomjs](https://github.com/ariya/phantomjs) for feature tests, installed and available on your path.

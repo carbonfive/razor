@@ -16,7 +16,7 @@ defmodule Razor.Presenter do
     """
 
     Logger.info art
-    Logger.info "Razor will create your new phoenix app in directory: #{target_dir}"
+    Logger.info "Razor will create your new Phoenix app in directory: #{target_dir}"
     Logger.info "- Application Name: #{title_name}"
     Logger.info "- Project Template: #{prototype_repo}"
     Logger.info "- Elixir Version:    Not yet determined."
@@ -39,17 +39,17 @@ defmodule Razor.Presenter do
     $ yarn install
 
     # Build your javascript dependencies (you'll need brunch installed and in your path)
-    # For a local copy, install brunch from here and add node_modules/.bin to your path
-    $ brunch build
+    # For a local copy, install brunch from here and add assets/node_modules/.bin to your path
+    $ cd assets && brunch build && cd -
 
     # Run the initial tests (they should all pass)
     $ mix test
 
     # Generate a secret key base, which you'll use to run your server
-    $ mix phoenix.gen.secret
+    $ mix phx.gen.secret
     
     # Run your server (use the key you generated as the value for SECRET_KEY_BASE)
-    $ MIX_ENV=dev SECRET_KEY_BASE= mix phoenix.server
+    $ MIX_ENV=dev SECRET_KEY_BASE= mix phx.server
 
     $ open http://127.0.0.1:4000
 

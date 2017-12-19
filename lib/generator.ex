@@ -78,6 +78,8 @@ defmodule Razor.Generator do
     snake_new_name = replacements[snake_proto_name]
     File.rename("#{dir}/lib/#{snake_proto_name}",
                 "#{dir}/lib/#{snake_new_name}")
+    File.rename("#{dir}/lib/#{snake_proto_name}_web",
+                "#{dir}/lib/#{snake_new_name}_web")
 
       files = get_all_files(dir)
 
