@@ -51,7 +51,7 @@ _Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the gener
 1. `cd your_new_project_dir`
 1. `mix deps.get` - install dependencies
 1. `mix ecto.setup` - setup your local database
-1. Prep js - `yarn install; brunch build` (If you have issues with this, see the "Before You Start" section above.)
+1. Prep js - `cd assets; yarn install; brunch build` (If you have issues with this, see the "Before You Start" section above.)
 1. Verify the test suite passes with `mix test`
 1. Generate a secret key base with `mix phoenix.gen.secret`. You'll use this in the next step when you run your server.
 1. Run your server with `MIX_ENV=dev SECRET_KEY_BASE= mix phoenix.server`. Use the key you just generated as the value for `SECRET_KEY_BASE`.

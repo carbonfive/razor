@@ -36,7 +36,7 @@ defmodule Razor.Presenter do
     $ mix ecto.setup
 
     # Install your javascript dependencies (you'll need yarn installed and in your path)
-    $ yarn install
+    $ cd assets && yarn install && cd -
 
     # Build your javascript dependencies (you'll need brunch installed and in your path)
     # For a local copy, install brunch from here and add assets/node_modules/.bin to your path
