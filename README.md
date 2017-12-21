@@ -26,7 +26,7 @@ Inspired by [Carbon Five Raygun](https://github.com/carbonfive/raygun)
 You'll need these dependencies for Razor & your new Phoenix app:
 
 - Erlang
-- [Elixir 1.4.5](https://elixir-lang.org/install.html)
+- [Elixir 1.5.1](https://elixir-lang.org/install.html)
 - Postgres
 - [Yarn](https://github.com/yarnpkg/yarn) for JavaScript dependencies, installed and available on your path.
 - [Phantomjs](https://github.com/ariya/phantomjs) for feature tests, installed and available on your path.
@@ -51,10 +51,10 @@ _Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the gener
 1. `cd your_new_project_dir`
 1. `mix deps.get` - install dependencies
 1. `mix ecto.setup` - setup your local database
-1. Prep js - `yarn install; brunch build` (If you have issues with this, see the "Before You Start" section above.)
+1. Prep js - `cd assets; yarn install; brunch build` (If you have issues with this, see the "Before You Start" section above.)
 1. Verify the test suite passes with `mix test`
-1. Generate a secret key base with `mix phoenix.gen.secret`. You'll use this in the next step when you run your server.
-1. Run your server with `MIX_ENV=dev SECRET_KEY_BASE= mix phoenix.server`. Use the key you just generated as the value for `SECRET_KEY_BASE`.
+1. Generate a secret key base with `mix phx.gen.secret`. You'll use this in the next step when you run your server.
+1. Run your server with `MIX_ENV=dev SECRET_KEY_BASE= mix phx.server`. Use the key you just generated as the value for `SECRET_KEY_BASE`.
 1. That's it! Visit your fully-featured app at `127.0.0.1:4000`.
 
 _Windows users - your executable may be `razor.bat` instead of `razor`_
@@ -87,8 +87,9 @@ Convention is to auto-deploy `master` branch to `acceptance`, and `production` b
   - `heroku buildpacks:add https://github.com/HashNuke/heroku-buildpack-elixir.git --app your-heroku-app-name`
   - `heroku buildpacks:add https://github.com/gjaldon/heroku-buildpack-phoenix-static.git --app your-heroku-app-name`
 - Add environment variables to Heroku
-  - `SECRET_KEY_BASE`, which can be generated with the task `mix phoenix.gen.secret`
-  - `MIX_ENV` should be `acceptance` and `production` respectively
+  - `SECRET_KEY_BASE`, which can be generated with the task `mix phx.gen.secret`
+  - `MIX_ENV` should be `prod`
+  - `HOSTNAME`, should be the hostname of the deployed site (e.g. `app-prototype-production.herokuapp.com` on production environments, or `app-prototype-acceptance.herokuapp.com` for acceptance environments)
   - `POOL_SIZE` should be set 2 units below the max db connections allowed by the Heroku instance. This allows mix tasks to be run with 2 connections.
   - `DATABASE_URL` should have been filled automatically by provisioning heroku postgres.
 
