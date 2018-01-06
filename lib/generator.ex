@@ -80,6 +80,8 @@ defmodule Razor.Generator do
                 "#{dir}/lib/#{snake_new_name}")
     File.rename("#{dir}/lib/#{snake_proto_name}_web",
                 "#{dir}/lib/#{snake_new_name}_web")
+    File.rename("#{dir}/test/#{snake_proto_name}_web",
+                "#{dir}/test/#{snake_new_name}_web")
 
       files = get_all_files(dir)
 
