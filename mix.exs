@@ -3,7 +3,7 @@ defmodule Razor.Mixfile do
 
   @build_path "razor_archives"
 
-  @version "1.0.0"
+  @version "1.0.1"
 
   def project do
     [app: :razor,
