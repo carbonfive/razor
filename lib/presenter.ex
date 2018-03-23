@@ -1,5 +1,6 @@
 defmodule Razor.Presenter do
   require Logger
+
   @moduledoc """
   Razor.Presenter displays information about the generated project
   """
@@ -15,16 +16,16 @@ defmodule Razor.Presenter do
             \/      \/      \/            
     """
 
-    Logger.info art
-    Logger.info "Razor will create your new Phoenix app in directory: #{target_dir}"
-    Logger.info "- Application Name: #{title_name}"
-    Logger.info "- Project Template: #{prototype_repo}"
-    Logger.info "- Elixir Version:    Not yet determined."
+    Logger.info(art)
+    Logger.info("Razor will create your new Phoenix app in directory: #{target_dir}")
+    Logger.info("- Application Name: #{title_name}")
+    Logger.info("- Project Template: #{prototype_repo}")
+    Logger.info("- Elixir Version:    Not yet determined.")
     :ok
   end
 
   def print_next_steps(dir) do
-    IO.puts """
+    IO.puts("""
     // Your new application has been cut! Next steps... //
 
     $ cd #{dir}
@@ -47,7 +48,7 @@ defmodule Razor.Presenter do
 
     # Generate a secret key base, which you'll use to run your server
     $ mix phx.gen.secret
-    
+
     # Run your server (use the key you generated as the value for SECRET_KEY_BASE)
     $ MIX_ENV=dev SECRET_KEY_BASE= mix phx.server
 
@@ -55,15 +56,15 @@ defmodule Razor.Presenter do
 
     For more detailed instructions, visit https://github.com/carbonfive/razor.
     Enjoy your Carbon Five flavored Phoenix application!
-    """
+    """)
   end
 
   def print_next_steps(_, _) do
-    IO.puts """
+    IO.puts("""
     // Your new application has been cut by Razor! //
 
     Enjoy your Carbon Five-flavored application.
-    """
+    """)
   end
 
   def convert_string_to_camel(string) do
@@ -83,7 +84,7 @@ defmodule Razor.Presenter do
     |> convert_string_to_snake()
     |> String.replace("_", " ")
     |> String.split()
-    |> Enum.map(&(String.capitalize(&1)))
+    |> Enum.map(&String.capitalize(&1))
     |> Enum.join(" ")
   end
 end
