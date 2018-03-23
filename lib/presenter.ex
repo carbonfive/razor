@@ -39,9 +39,8 @@ defmodule Razor.Presenter do
     # Install your javascript dependencies (you'll need yarn installed and in your path)
     $ cd assets && yarn install && cd -
 
-    # Build your javascript dependencies (you'll need brunch installed and in your path)
-    # For a local copy, install brunch from here and add assets/node_modules/.bin to your path
-    $ cd assets && brunch build && cd -
+    # Build static assets with brunch
+    $ cd assets && ./node_modules/.bin/brunch build && cd -
 
     # Run the initial tests (they should all pass)
     $ mix test
