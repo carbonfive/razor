@@ -26,13 +26,13 @@ Inspired by [Carbon Five Raygun](https://github.com/carbonfive/raygun)
 You'll need these dependencies for Razor & your new Phoenix app:
 
 - Erlang
-- [Elixir 1.5.1](https://elixir-lang.org/install.html)
+- [Elixir 1.6.4](https://elixir-lang.org/install.html)
 - Postgres
 - [Yarn](https://github.com/yarnpkg/yarn) for JavaScript dependencies, installed and available on your path.
 - [Phantomjs](https://github.com/ariya/phantomjs) for feature tests, installed and available on your path.
 - [Brunch](https://github.com/brunch/brunch) for JavaScript builds, installed and available on your path.
 
-You can install brunch globally or local to your project with yarn or npm.  
+You can install brunch globally or local to your project with yarn or npm.
 If you install it local to your project, you'll need to add `node_modules/.bin` to your path so the executable can be found.
 
 _Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the generated app have a `.tool-versions` file to help you get the right versions of things. You can change these - for example, erlang 19.3 is probably fine, but currently has installation problems on Macs._

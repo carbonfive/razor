@@ -8,7 +8,7 @@ defmodule Razor.Mixfile do
   def project do
     [app: :razor,
      version: @version,
-     elixir: "~> 1.5.1",
+     elixir: "~> 1.6.4",
      build_embedded: true,
      start_permanent: true,
      escript: escript(),
