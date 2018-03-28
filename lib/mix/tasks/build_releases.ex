@@ -1,8 +1,8 @@
 defmodule Mix.Tasks.BuildReleases do
   use Mix.Task
 
-  @version Mix.Project.config[:version]
-  
+  @version Mix.Project.config()[:version]
+
   @shortdoc "Builds releases called razor and razor-<version> in razor_archives/"
   def run(_) do
     Mix.Tasks.Compile.run([])
@@ -15,10 +15,9 @@ defmodule Mix.Tasks.BuildReleases do
   defp version(), do: @version
 
   defp success_message() do
-    IO.puts "Renamed razor_archives/razor.ez to razor_archives/razor"
-    IO.puts "Generated escript razor_archives/razor-#{version()} with MIX_ENV=#{Mix.env}"
+    IO.puts("Renamed razor_archives/razor.ez to razor_archives/razor")
+    IO.puts("Generated escript razor_archives/razor-#{version()} with MIX_ENV=#{Mix.env()}")
   end
-  
+
   def build_path(), do: Razor.Mixfile.build_path()
 end
-

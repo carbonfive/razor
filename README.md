@@ -26,14 +26,10 @@ Inspired by [Carbon Five Raygun](https://github.com/carbonfive/raygun)
 You'll need these dependencies for Razor & your new Phoenix app:
 
 - Erlang
-- [Elixir 1.5.1](https://elixir-lang.org/install.html)
+- [Elixir 1.6](https://elixir-lang.org/install.html)
 - Postgres
 - [Yarn](https://github.com/yarnpkg/yarn) for JavaScript dependencies, installed and available on your path.
 - [Phantomjs](https://github.com/ariya/phantomjs) for feature tests, installed and available on your path.
-- [Brunch](https://github.com/brunch/brunch) for JavaScript builds, installed and available on your path.
-
-You can install brunch globally or local to your project with yarn or npm.  
-If you install it local to your project, you'll need to add `node_modules/.bin` to your path so the executable can be found.
 
 _Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the generated app have a `.tool-versions` file to help you get the right versions of things. You can change these - for example, erlang 19.3 is probably fine, but currently has installation problems on Macs._
 
@@ -51,7 +47,7 @@ _Note for [asdf](https://github.com/asdf-vm/asdf) users - both Razor & the gener
 1. `cd your_new_project_dir`
 1. `mix deps.get` - install dependencies
 1. `mix ecto.setup` - setup your local database
-1. Prep js - `cd assets; yarn install; brunch build` (If you have issues with this, see the "Before You Start" section above.)
+1. Prep js - `cd assets; yarn install; ./node_modules/.bin/brunch build`
 1. Verify the test suite passes with `mix test`
 1. Generate a secret key base with `mix phx.gen.secret`. You'll use this in the next step when you run your server.
 1. Run your server with `MIX_ENV=dev SECRET_KEY_BASE= mix phx.server`. Use the key you just generated as the value for `SECRET_KEY_BASE`.
